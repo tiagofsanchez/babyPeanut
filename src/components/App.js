@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import '../App.css';
 import 'semantic-ui-css/semantic.min.css'
-import Card from './Card'
+
 import Title from './Title'
 import VerticalMenu from './Menu';
 import BabyForm from './BabyForm';
-
+import { Grid, GridColumn, Segment } from 'semantic-ui-react';
 
 class App extends Component {
   
@@ -43,32 +43,35 @@ class App extends Component {
   
   render() {  
     const { type, food, output, sleep } = this.state
-    
+
     return (
       <div className="App">
-        <div> 
-        <VerticalMenu menu={this.changeFormMenu}/>
-        </div>
-
-        <div>
-          {type === 'Food' ? (
-            <Card>
-              <Title title={food.title} />
-              <BabyForm />
-            </Card>
-          ) : type === 'Output' ? (
-            <Card>
-              <Title title={output.title} />
-            </Card>
-          ) : type === 'Sleep' ? (
-            <Card>
-              <Title title={sleep.title} />
-            </Card>
-          ) :
-                null
-          }
-        </div>
-
+        <Grid >
+          <Grid.Column container width={3}>
+            <VerticalMenu className="App-Menu" menu={this.changeFormMenu} />
+          </Grid.Column>
+          <Grid.Column container width={12}>
+            {type === 'Food' ? (
+              <div className="App-Form">
+                <Title title={food.title} />
+                <BabyForm />
+              </div>
+            )
+              : type === 'Output' ? (
+                <div className="App-Form">
+                  <Title title={output.title} />
+                  {/* <BabyForm /> */}
+                </div>
+              ) : type === 'Sleep' ? (
+                <div className="App-Form">
+                  <Title title={sleep.title} />
+                  {/* <BabyForm/> */}
+                </div>
+              ) :
+                  null
+            }
+          </Grid.Column>
+        </Grid>
       </div>
     );
   }

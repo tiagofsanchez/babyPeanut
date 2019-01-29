@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Segment, Radio } from 'semantic-ui-react';
+import { Form, Segment, Radio, Card } from 'semantic-ui-react';
 
 
 const options = [
@@ -75,7 +75,7 @@ class BabyForm extends React.Component {
                             name='text'
                             value={text}
                             onChange={(event, { name, value }) => this.handleChange(event, name, value)}
-                            placeholder='Something about you...'
+                            placeholder='Any notes that you want...'
                         />
                   
                     <Form.Button>Submit</Form.Button>
