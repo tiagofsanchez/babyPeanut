@@ -10,28 +10,18 @@ import { Grid  } from 'semantic-ui-react';
 class App extends Component {
   
   //state of the app that will be for (1)Food intake; (2)Output of the baby; (3)Sleep time of the baby. All states will have a different structre
-  
   state = {
     food: {
       title: 'Food',
-      data: [{
-        date: '',
-        bb: {
-          side: 'left',
-          duration: 200,
-          time: new Date()
-        },
-        bt: {
-          ml: 100,
-          time: new Date()
-        }
-      }]
+      data:[],
     },
     output: {
-      title: 'Output'
+      title: 'Output',
+      data:[],
     },
-    sleep: {
-      title: 'Sleep'
+    sleep:  {
+      title: 'Sleep',
+      data:[]
     },
     type: 'Food', 
   }
@@ -43,8 +33,16 @@ class App extends Component {
     })
   }
 
+  /* gets the data from food form and keeps it in the state of the app */
   babyFood = (babyFood) => {
     console.log(babyFood);
+    this.setState({
+      food: {
+        ...this.state.food,
+        data: [this.state.food.data, babyFood]
+      }
+      })
+    console.log(this.state);
   }
   
   render() {  

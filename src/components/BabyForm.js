@@ -34,7 +34,7 @@ class BabyForm extends React.Component {
         this.setState({ [name ? name : event.target.name]: value ? value : event.target.value })
     };
 
-    /* will pass the state of the form to the parent, App */
+    /* will pass the state of the form to the parent, App in a newly created array babyFood */
     handleSubmit = (event) => {
         const { breast , duration , quantity , datetime , text  } = this.state
         event.preventDefault();
