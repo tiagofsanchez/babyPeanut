@@ -10,11 +10,12 @@ import { Grid  } from 'semantic-ui-react';
 class App extends Component {
   
   //state of the app that will be for (1)Food intake; (2)Output of the baby; (3)Sleep time of the baby. All states will have a different structre
+  
   state = {
     food: {
       title: 'Food',
       data: [{
-        date: new Date(Date.parse('2019/01/10')),
+        date: '',
         bb: {
           side: 'left',
           duration: 200,
@@ -35,10 +36,15 @@ class App extends Component {
     type: 'Food', 
   }
   
-  changeFormMenu= (menu) => {
+  /* Changes the type to whatever the user chooses in the menu and it will return the needed form*/
+  changeBabyForm= (menu) => {
     this.setState({
       type: menu
     })
+  }
+
+  babyFood = (babyFood) => {
+    console.log(babyFood);
   }
   
   render() {  
@@ -48,13 +54,13 @@ class App extends Component {
       <div className="App">
         <Grid >
           <Grid.Column container width={3}>
-            <VerticalMenu menu={this.changeFormMenu} />
+            <VerticalMenu menu={this.changeBabyForm} />
           </Grid.Column>
           <Grid.Column container width={12}>
             {type === 'Food' ? (
               <div className="App-Form">
                 <Title title={food.title} />
-                <BabyForm />
+                <BabyForm babyFood={this.babyFood}/>
               </div>
             )
               : type === 'Output' ? (

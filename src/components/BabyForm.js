@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Segment, Radio, Label , Button } from 'semantic-ui-react';
+import { Form, Segment, Radio, Label  } from 'semantic-ui-react';
 
 
 const timeOptions = [
@@ -18,31 +18,40 @@ const quantityOptions = [
 
 const initialState = {
     breast: '',
-    text: '',
     duration: '',
-    time: '',
-    quantity: ''
+    quantity: '',
+    datetime: '',
+    text: '',
 };
 
 class BabyForm extends React.Component {
 
     state = initialState;
 
-    /* This handleChange takes care of all the events, input, textarea, checkbox, select */
+    /* This handleChange takes care of all the events, input and textarea selected */
     handleChange = (event, name = null, value = null) => {
         name ? console.log(name) : console.log(event.target.name);
         this.setState({ [name ? name : event.target.name]: value ? value : event.target.value })
     };
 
+    /* will pass the state of the form to the parent, App */
     handleSubmit = (event) => {
+        const { breast , duration , quantity , datetime , text  } = this.state
         event.preventDefault();
-        console.log(this.state);
+        const babyFood = {
+            breast: breast,
+            duration: duration,
+            quantity: quantity,
+            datetime: datetime,
+            text: text,
+        }
+        this.props.babyFood(babyFood);
         this.setState(initialState);
     }
 
     render() {
 
-        const { breast, text, duration, time, quantity } = this.state
+        const { breast, text, duration, datetime, quantity } = this.state
 
         return (
             <Segment>
@@ -90,24 +99,23 @@ class BabyForm extends React.Component {
                     </Form.Group>
 
                     <Form.Group inline>
-                        <Label>TIME</Label>
+                        <Label>DATE & TIME </Label>
                         <Form.Input
-                            name='time'
-                            type="time"
-                            value={time}
+                            name='datetime'
+                            type="datetime-local"
+                            value={datetime}
                             onChange={(event, { name, value }) => this.handleChange(event, name, value)}
                         />
-
                     </Form.Group>
-                    
+
                     <Form.TextArea
                         name='text'
                         value={text}
                         onChange={(event, { name, value }) => this.handleChange(event, name, value)}
                         placeholder='Any notes that you want...'
                     />
-                 
-                    <Form.Button color='vk' fluid basic >Submit</Form.Button>
+                    
+                    <Form.Button color='blue' fluid basic >Submit</Form.Button>
                 </Form>
             </Segment>
         )
