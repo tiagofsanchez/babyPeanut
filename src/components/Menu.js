@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
 
 export default class VerticalMenu extends Component {
-  state = { activeItem: 'Food' }
+  state = { 
+      activeItem: 'Food' 
+    }
 
   handleItemClick = (e, { name }) => {
       this.setState({ activeItem: name });

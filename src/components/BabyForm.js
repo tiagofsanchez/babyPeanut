@@ -1,18 +1,27 @@
 import React from 'react';
-import { Form, Segment, Radio, Card } from 'semantic-ui-react';
+import { Form, Segment, Radio, Label , Button } from 'semantic-ui-react';
 
 
-const options = [
-    { key: 'mr', text: 'Mr.', value: 'Mr.' },
-    { key: 'miss', text: 'Miss.', value: 'Miss.' },
-    { key: 'ms', text: 'Ms.', value: 'Ms.' },
-    { key: 'mrs', text: 'Mrs.', value: 'Mrs.' }, 
+const timeOptions = [
+    { key: '5', text: '5 min', value: '5' },
+    { key: '10', text: '10 min', value: '10' },
+    { key: '15', text: '15 min', value: '15' },
+    { key: '20', text: '20 min', value: '20' },
 ];
+
+const quantityOptions = [
+    { key: '5', text: '5 ml', value: '5' },
+    { key: '10', text: '10 ml', value: '10' },
+    { key: '15', text: '15 ml', value: '15' },
+    { key: '20', text: '20 ml', value: '20' },
+]
 
 const initialState = {
     breast: '',
     text: '',
-    title: ''
+    duration: '',
+    time: '',
+    quantity: ''
 };
 
 class BabyForm extends React.Component {
@@ -33,52 +42,72 @@ class BabyForm extends React.Component {
 
     render() {
 
-        const { breast , text , title } = this.state
+        const { breast, text, duration, time, quantity } = this.state
 
         return (
-            <Segment raised>
+            <Segment>
                 <Form onSubmit={this.handleSubmit}>
-                    <Form.Group widths='equal'>
-                        <label>Breast</label>
-     
+                    <Form.Group inline  >
+                        <Label>BREAST</Label>
+                        <label >side:</label>
                         <Form.Field
-                            name = 'breast'
+                            name='breast'
                             control={Radio}
                             label='Right'
                             value='right'
                             checked={breast === 'right'}
-                            onChange={(e, {name , value }) => this.handleChange(e, name, value)}
+                            onChange={(e, { name, value }) => this.handleChange(e, name, value)}
                         />
                         <Form.Field
-                            name = 'breast'
+                            name='breast'
                             control={Radio}
                             label='Left'
                             value='left'
                             checked={breast === 'left'}
-                            onChange={(e, {name , value }) => this.handleChange(e, name, value)}
+                            onChange={(e, { name, value }) => this.handleChange(e, name, value)}
                         />
-
+                        <label>duration:</label>
                         <Form.Dropdown
-                            name='title'
-                            label = 'title'
+                            name='duration'
                             onChange={(event, { name, value }) => this.handleChange(event, name, value)}
-                            placeholder='Mr.,Miss.,Ms. or Mrs'
-                            fluid
+                            placeholder='time of breastfeeding...'
                             selection
-                            options={options}
-                            value={title}
+                            options={timeOptions}
+                            value={duration}
                         />
                     </Form.Group>
-                    
-                  
-                        <Form.TextArea
-                            name='text'
-                            value={text}
+                    <Form.Group inline>
+                        <Label>FORMULA</Label>
+                        <label>quantity:</label>
+                        <Form.Dropdown
+                            name='quantity'
                             onChange={(event, { name, value }) => this.handleChange(event, name, value)}
-                            placeholder='Any notes that you want...'
+                            placeholder='quantity given..'
+                            selection
+                            options={quantityOptions}
+                            value={quantity}
                         />
-                  
-                    <Form.Button>Submit</Form.Button>
+                    </Form.Group>
+
+                    <Form.Group inline>
+                        <Label>TIME</Label>
+                        <Form.Input
+                            name='time'
+                            type="time"
+                            value={time}
+                            onChange={(event, { name, value }) => this.handleChange(event, name, value)}
+                        />
+
+                    </Form.Group>
+                    
+                    <Form.TextArea
+                        name='text'
+                        value={text}
+                        onChange={(event, { name, value }) => this.handleChange(event, name, value)}
+                        placeholder='Any notes that you want...'
+                    />
+                 
+                    <Form.Button color='vk' fluid basic >Submit</Form.Button>
                 </Form>
             </Segment>
         )

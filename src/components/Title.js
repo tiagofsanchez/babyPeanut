@@ -4,7 +4,7 @@ import { Header } from 'semantic-ui-react'
 const Title = ({ title }) => {
 
   return (
-    <Header>
+    <Header as='h1' textAlign='left'>
       {title} 
     </Header>
   )
