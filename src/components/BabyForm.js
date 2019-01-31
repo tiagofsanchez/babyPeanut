@@ -1,5 +1,6 @@
 import React from 'react';
-import { Form, Segment, Radio, Label  } from 'semantic-ui-react';
+import { Form, Segment, Radio, Label, Divider } from 'semantic-ui-react';
+import './BabyForm.css';
 
 
 const timeOptions = [
@@ -36,7 +37,7 @@ class BabyForm extends React.Component {
 
     /* will pass the state of the form to the parent, App in a newly created array babyFood */
     handleSubmit = (event) => {
-        const { breast , duration , quantity , datetime , text  } = this.state
+        const { breast, duration, quantity, datetime, text } = this.state
         event.preventDefault();
         const babyFood = {
             breast: breast,
@@ -54,10 +55,12 @@ class BabyForm extends React.Component {
         const { breast, text, duration, datetime, quantity } = this.state
 
         return (
+            <div>
             <Segment>
-                <Form onSubmit={this.handleSubmit}>
-                    <Form.Group inline  >
-                        <Label>BREAST</Label>
+                <Form className="form-wrap" onSubmit={this.handleSubmit}>
+
+                    <Form.Group className="form-group-wrap" inline >
+                        <Label inline>BREAST</Label>
                         <label >side:</label>
                         <Form.Field
                             name='breast'
@@ -85,7 +88,7 @@ class BabyForm extends React.Component {
                             value={duration}
                         />
                     </Form.Group>
-                    <Form.Group inline>
+                    <Form.Group className="form-group-wrap" inline>
                         <Label>FORMULA</Label>
                         <label>quantity:</label>
                         <Form.Dropdown
@@ -98,7 +101,7 @@ class BabyForm extends React.Component {
                         />
                     </Form.Group>
 
-                    <Form.Group inline>
+                    <Form.Group className="form-group-wrap" inline>
                         <Label>DATE & TIME </Label>
                         <Form.Input
                             name='datetime'
@@ -114,12 +117,36 @@ class BabyForm extends React.Component {
                         onChange={(event, { name, value }) => this.handleChange(event, name, value)}
                         placeholder='Any notes that you want...'
                     />
-                    
+
                     <Form.Button color='blue' fluid basic >Submit</Form.Button>
                 </Form>
             </Segment>
-        )
-    }
-}
+            <div>
+                    <form className="flex-form">
+                        <input type="search" placeholder="Where do you want to go?"></input>
 
+                        <label for="from">From</label>
+                        <input type="date" name="from"></input>
+
+                        <label for="from">To</label>
+                        <input type="date" name="to"></input>
+
+                        <select name="" id="">
+                            <option value="1">1 Guest</option>
+                            <option value="2">2 Guest</option>
+                            <option value="3">3 Guest</option>
+                            <option value="4">4 Guest</option>
+                            <option value="5">5 Guest</option>
+                        </select>
+                    </form>
+
+
+            </div>
+            </div>
+
+
+                            )
+                        }
+                    }
+                    
 export default BabyForm;

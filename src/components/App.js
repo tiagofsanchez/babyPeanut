@@ -39,7 +39,7 @@ class App extends Component {
     this.setState({
       food: {
         ...this.state.food,
-        data: [this.state.food.data, babyFood]
+        data: [...this.state.food.data, babyFood]
       }
       })
     console.log(this.state);
@@ -74,7 +74,7 @@ class App extends Component {
               ) :
                   null
             }
-          </Grid.Column>
+          </Grid.Column >
         </Grid>
       </div>
     );
