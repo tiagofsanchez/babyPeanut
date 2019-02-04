@@ -1,19 +1,1 @@
 
-.form-wrap {
-    border:1px solid pink;
-    display: flex; 
-    flex-direction: column;
-}
-
-.form-group-wrap  {
-    border:1px solid goldenrod;
-    display: flex !important; 
-    flex-direction: column;
-}
-
-
-.flex-form {
-    border:1px solid pink;
-    display: flex;
-}
-
